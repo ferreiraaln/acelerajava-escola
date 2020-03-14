@@ -10,8 +10,8 @@ public class Turma {
     @Id
     @GeneratedValue(strategy =  GenerationType.IDENTITY)
     private Long id;
-    private Date dataInicio;
-    private Date dataFinal;
+    private String dataInicio;
+    private String dataFinal;
 
     @ManyToOne
     @JoinColumn(name = "id_curso",referencedColumnName = "id")
@@ -31,19 +31,19 @@ public class Turma {
         this.id = id;
     }
 
-    public Date getDataInicio() {
+    public String getDataInicio() {
         return dataInicio;
     }
 
-    public void setDataInicio(Date dataInicio) {
+    public void setDataInicio(String dataInicio) {
         this.dataInicio = dataInicio;
     }
 
-    public Date getDataFinal() {
+    public String getDataFinal() {
         return dataFinal;
     }
 
-    public void setDataFinal(Date dataFinal) {
+    public void setDataFinal(String dataFinal) {
         this.dataFinal = dataFinal;
     }
 

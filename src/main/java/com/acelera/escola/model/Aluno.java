@@ -10,9 +10,10 @@ public class Aluno {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private String nome;
     private String cpf;
     @Column(name = "data_nascimento")
-    private Date dataNascimento;
+    private String dataNascimento;
     private String telefone;
 
     @OneToMany(mappedBy = "aluno")
@@ -29,6 +30,14 @@ public class Aluno {
         this.id = id;
     }
 
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
     public String getCpf() {
         return cpf;
     }
@@ -37,11 +46,11 @@ public class Aluno {
         this.cpf = cpf;
     }
 
-    public Date getDataNascimento() {
+    public String getDataNascimento() {
         return dataNascimento;
     }
 
-    public void setDataNascimento(Date dataNascimento) {
+    public void setDataNascimento(String dataNascimento) {
         this.dataNascimento = dataNascimento;
     }
 
