@@ -2,10 +2,14 @@ package com.acelera.escola.service;
 
 import com.acelera.escola.converter.TurmaConverter;
 import com.acelera.escola.dto.TurmaDTO;
+import com.acelera.escola.model.Aluno;
+import com.acelera.escola.model.Curso;
 import com.acelera.escola.model.Turma;
 import com.acelera.escola.repository.TurmaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class TurmaService {
@@ -23,18 +27,22 @@ public class TurmaService {
     }
 
     public Boolean salvar(TurmaDTO turmaDTO) {
-
-        Turma turma = turmaConverter.turmadtoToTurma(turmaDTO);
-        CursoService cursoService = new CursoService();
+        Curso curso;
         try {
-            turma.setCurso( cursoService.getById(turmaDTO.getId_curso()));
+            CursoService cursoService = new CursoService();
+            curso = cursoService.getById(turmaDTO.getId_curso());
         } catch (Exception e) {
             e.printStackTrace();
             return false;
         }
-    //bloquinho de aluno
-        AlunoService alunoService = new AlunoService();
-        alunoService.getByIds(turmaDTO.getId_alunos());
+
+        Turma turma = turmaConverter.turmadtoToTurma(turmaDTO);
+        turma.setCurso(curso);
+
+        turmaRepository.save(turma);
+
+
+        //MastriculaService.save(turma,turmaDTO.getId_alunos());
 
         return true;
     }

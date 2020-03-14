@@ -24,11 +24,7 @@ public class AlunoService {
     }
 
     public List<Aluno> getByIds(List<Long> ids){
-
-        List<Aluno> alunos = new ArrayList<Aluno>();
-        alunoRepository.findAll(ids);
-
-        return null;
+        return alunoRepository.findAllById(ids);
     }
 
 }
