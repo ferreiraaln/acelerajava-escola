@@ -5,10 +5,14 @@ import com.acelera.escola.repository.CursoRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class CursoServiceTest {
+
+    @Autowired
+    private CursoService cursoService;
 
     private CursoRepository cursoRepository;
 
@@ -30,7 +34,6 @@ public class CursoServiceTest {
         Mockito.when(cursoRepository.save(cursoEsperado)).thenReturn(cursoEsperado);
 
         //execução
-        CursoService cursoService = new CursoService(cursoRepository);
         Curso esperado = cursoService.salvar(cursoEsperado);
 
         //validação

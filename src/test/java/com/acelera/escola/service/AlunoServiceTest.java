@@ -7,11 +7,15 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.Mockito;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class AlunoServiceTest {
+
+    @Autowired
+    private AlunoService alunoService;
 
     private AlunoRepository alunoRepository;
 
@@ -34,7 +38,6 @@ public class AlunoServiceTest {
         Mockito.when(alunoRepository.save(alunoEsperado)).thenReturn(alunoEsperado);
 
         //execução
-        AlunoService alunoService  = new AlunoService(alunoRepository);
         Aluno esperado = alunoService.salvar(alunoEsperado);
 
         //validação
@@ -53,7 +56,6 @@ public class AlunoServiceTest {
         alunoEsperado.setTelefone("5132547841");
 
         // execução
-        AlunoService alunoService = new AlunoService(alunoRepository);
 
         // verificação / validação
         Assertions.assertThatThrownBy(() -> {

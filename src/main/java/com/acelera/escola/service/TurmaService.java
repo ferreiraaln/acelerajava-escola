@@ -38,11 +38,10 @@ public class TurmaService {
 
         Turma turma = turmaConverter.turmadtoToTurma(turmaDTO);
         turma.setCurso(curso);
+        this.salvar(turma);
 
-        turmaRepository.save(turma);
-
-
-        //MastriculaService.save(turma,turmaDTO.getId_alunos());
+        MatriculaService matriculaService = new MatriculaService();
+        matriculaService.save(turma,turmaDTO.getId_alunos());
 
         return true;
     }
